@@ -1,0 +1,16 @@
+name: CI
+on: [push]
+
+jobs:
+  job_id: "continuous-integration-workflow"
+  build:
+    name: Build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1            
+      - name: Build application
+        run: |
+          xcodebuild build-for-testing -scheme Experiment -workspace Experiment.xcworkspace -sdk iphonesimulator -derivedDataPath .build 
