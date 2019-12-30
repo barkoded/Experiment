@@ -1,4 +1,4 @@
-name: CI
+name: Continous-Integration
 on: [push]
 
 jobs:
@@ -9,7 +9,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
         with:
-          fetch-depth: 1            
+          fetch-depth: 1
+      - name: Select Xcode version
+        run: |
+          sudo xcode-select -switch /Applications/Xcode_11.2.1.app
       - name: Build application
         run: |
           xcodebuild build-for-testing -scheme Experiment -workspace Experiment.xcworkspace -sdk iphonesimulator -derivedDataPath .build 
