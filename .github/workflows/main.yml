@@ -10,8 +10,16 @@ env:
 
 
 jobs:
+  prepare:
+    name: Prepare tooling
+    runs-on: macos-latest
+    steps:
+      - name: Select Xcode Version
+        run: |
+        sudo xcode-select -switch /Applications/Xcode_11.2.1.app
   resolve:
     name: Resolve Swift Package Dependencies
+    needs: prepare
     runs-on: macos-latest
     steps:
       - name: Resolve Swift Package Dependencies
@@ -26,9 +34,6 @@ jobs:
         uses: actions/checkout@master
         with:
           fetch-depth: 1
-      - name: Select Xcode version
-        run: |
-          sudo xcode-select -switch /Applications/Xcode_11.2.1.app
       - name: Build application
         run: |
           xcodebuild build-for-testing -scheme $XCODEBUILD_WORKSPACE -workspace Experiment.xcworkspace -sdk iphonesimulator -derivedDataPath $XCODEBUILD_DERIVED_DATA_PATH
