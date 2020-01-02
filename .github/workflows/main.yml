@@ -14,6 +14,10 @@ jobs:
     name: Prepare tooling
     runs-on: macos-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
       - name: Select Xcode Version
         run: |
           sudo xcode-select -switch /Applications/Xcode_11.2.1.app
@@ -22,21 +26,14 @@ jobs:
     needs: prepare
     runs-on: macos-latest
     steps:
-      - name: Debug variables
-        run: |
-          echo $GITHUB_WORKSPACE $HOME $XCODEBUILD_IPHONESIMULATOR_VERSION
       - name: Resolve Swift Package Dependencies
         run: |
-          cd .. ; xcodebuild -resolvePackageDependencies
+          xcodebuild -resolvePackageDependencies
   build:
     name: Build
     needs: resolve
     runs-on: macos-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
-        with:
-          fetch-depth: 1
       - name: Build application
         run: |
           xcodebuild build-for-testing -scheme Experiment -workspace $XCODEBUILD_WORKSPACE -sdk iphonesimulator -derivedDataPath $XCODEBUILD_DERIVED_DATA_PATH
