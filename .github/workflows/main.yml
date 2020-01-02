@@ -27,7 +27,7 @@ jobs:
           xcodebuild -resolvePackageDependencies
   build:
     name: Build
-    # needs: resolve
+    needs: resolve
     runs-on: macos-latest
     steps:
       - name: Checkout
@@ -36,4 +36,4 @@ jobs:
           fetch-depth: 1
       - name: Build application
         run: |
-          xcodebuild build-for-testing -scheme $XCODEBUILD_WORKSPACE -workspace Experiment.xcworkspace -sdk iphonesimulator -derivedDataPath $XCODEBUILD_DERIVED_DATA_PATH
+          xcodebuild build-for-testing -scheme Experiment -workspace $XCODEBUILD_WORKSPACE -sdk iphonesimulator -derivedDataPath $XCODEBUILD_DERIVED_DATA_PATH
