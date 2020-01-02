@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Select Xcode Version
         run: |
-        sudo xcode-select -switch /Applications/Xcode_11.2.1.app
+          sudo xcode-select -switch /Applications/Xcode_11.2.1.app
   resolve:
     name: Resolve Swift Package Dependencies
     needs: prepare
