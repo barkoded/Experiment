@@ -27,7 +27,7 @@ jobs:
           xcodebuild -resolvePackageDependencies
   build:
     name: Build
-    needs: resolve
+    # needs: resolve
     runs-on: macos-latest
     steps:
       - name: Checkout
