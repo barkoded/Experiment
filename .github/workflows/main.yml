@@ -27,7 +27,7 @@ jobs:
           echo $GITHUB_WORKSPACE $HOME $XCODEBUILD_IPHONESIMULATOR_VERSION
       - name: Resolve Swift Package Dependencies
         run: |
-          xcodebuild -resolvePackageDependencies
+          cd .. ; xcodebuild -resolvePackageDependencies
   build:
     name: Build
     needs: resolve
