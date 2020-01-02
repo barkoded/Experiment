@@ -31,4 +31,4 @@ jobs:
           sudo xcode-select -switch /Applications/Xcode_11.2.1.app
       - name: Build application
         run: |
-          xcodebuild build-for-testing -scheme ${{XCODEBUILD_WORKSPACE}} -workspace Experiment.xcworkspace -sdk iphonesimulator -derivedDataPath ${{XCODEBUILD_DERIVED_DATA_PATH}}
+          xcodebuild build-for-testing -scheme $XCODEBUILD_WORKSPACE -workspace Experiment.xcworkspace -sdk iphonesimulator -derivedDataPath $XCODEBUILD_DERIVED_DATA_PATH
