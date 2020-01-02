@@ -1,2 +1,2 @@
-![](https://github.com/barkoded/Experiment/workflows/.github/workflows/main.yml/badge.svg)
+![](https://github.com/barkoded/Experiment/workflows/Continous-Integration/badge.svg)
 # Experiment
